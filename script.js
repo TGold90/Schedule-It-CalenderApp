@@ -23,4 +23,22 @@ for(let i = 0; i < timeSlots.length; i++) {
 
   let hour = $("<div class='col-1 hour'>");
   let textArea = $("<textarea class='col-md-10 description'>");
+  textArea.attr("id", timeSlots[i]);
+  let saveBtn = $("<button class='col-1 btn saveBtn'>");
+  container.append(row);
+
+  hour.text(timeSlots[i]);
+  row.append(hour);
+  row.append(textArea);
+  row.append(saveBtn);
 }
+
+// function timeState(){
+//   let currentHour = moment().hours();
+//   $(".time-block").each(function () {
+//   let currentBlock = parseInt($(this).attr("id").split("")[0]);
+//     if 
+
+
+//   })
+// }
