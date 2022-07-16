@@ -8,6 +8,8 @@ const container = $(".container");
 const timeSlots = ["9AM", "10AM", "11Am", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 const timeId = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const saveBtn = $(".saveBtn");
+// const description = $(".description");
 
 var todayDate = $("#currentDay");
 
@@ -18,27 +20,41 @@ function showDate() { // Display current day and time
 
 setInterval(showDate, 1000);
 
-for(let i = 0; i < timeSlots.length; i++) {
-  let row = $("<div class='row time-block'>").attr("id", timeId[i]);//add ID to each iteration
+// for(let i = 0; i < timeSlots.length; i++) {
+//   let row = $("<div class='row time-block'>").attr("id", timeId[i]);//add ID to each iteration
 
-  let hour = $("<div class='col-1 hour'>");
-  let textArea = $("<textarea class='col-md-10 description'>");
-  textArea.attr("id", timeSlots[i]);
-  let saveBtn = $("<button class='col-1 btn saveBtn'>");
-  container.append(row);
+//   let hour = $("<div class='col-1 hour'>");
+//   let textArea = $("<textarea class='col-md-10 description'>");
+//   textArea.attr("id", timeSlots[i]);
+//   let saveBtn = $("<button class='col-1 btn saveBtn'>").text('Add Event');
+//   container.append(row);
 
-  hour.text(timeSlots[i]);
-  row.append(hour);
-  row.append(textArea);
-  row.append(saveBtn);
+//   hour.text(timeSlots[i]);
+//   row.append(hour);
+//   row.append(textArea);
+//   row.append(saveBtn);
+// }
+
+function timeState(){
+  let currentHour = moment().hours(); //
+  $(".time-block").each(function () {
+  let currentBlock = parseInt($(this).attr("id"));
+  console.log(currentBlock);
+  if (currentBlock < currentHour) {
+    $(this).addClass("past");
+} else if (currentBlock === currentHour) {
+    $(this).removeClass("past");
+    $(this).addClass("present");
+} else {
+    $(this).removeClass("past");
+    $(this).removeClass("present");
+    $(this).addClass("future");
 }
 
-// function timeState(){
-//   let currentHour = moment().hours();
-//   $(".time-block").each(function () {
-//   let currentBlock = parseInt($(this).attr("id").split("")[0]);
-//     if 
+  });
+}
+timeState();
+saveBtn.on("click", saveEvent());
 
-
-//   })
-// }
+function saveEvent(){
+}
