@@ -9,7 +9,10 @@ const timeSlots = ["9AM", "10AM", "11Am", "12PM", "1PM", "2PM", "3PM", "4PM", "5
 const timeId = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const saveBtn = $(".saveBtn");
-// const description = $(".description");
+const timeBlock = $('.time-block');
+const description = $(".description");
+
+var descriptionText = [];
 
 var todayDate = $("#currentDay");
 
@@ -20,7 +23,7 @@ function showDate() { // Display current day and time
 
 setInterval(showDate, 1000);
 
-// for(let i = 0; i < timeSlots.length; i++) {
+// for(let i = 0; i < timeSlots.length; i++) { //this is the javascript option to get 
 //   let row = $("<div class='row time-block'>").attr("id", timeId[i]);//add ID to each iteration
 
 //   let hour = $("<div class='col-1 hour'>");
@@ -53,8 +56,20 @@ function timeState(){
 
   });
 }
+
 timeState();
 saveBtn.on("click", saveEvent());
 
-function saveEvent(){
+function saveEvent(event){
+  // event.preventDefault();
+
+let eventText = description.value;
+
+if (eventText === "") {
+  return;
+}
+
+descriptionText.push(eventText);
+description.val = "";
+
 }
