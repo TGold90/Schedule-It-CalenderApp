@@ -39,7 +39,7 @@ setInterval(showDate, 1000);
 // }
 
 function timeState(){
-  let currentHour = moment().hours(); //
+  let currentHour = moment().hours(); 
   $(".time-block").each(function () {
   let currentBlock = parseInt($(this).attr("id"));
   console.log(currentBlock);
@@ -58,18 +58,32 @@ function timeState(){
 }
 
 timeState();
-saveBtn.on("click", saveEvent());
 
-function saveEvent(event){
+saveBtn.on("click", function(event){
+  (event.target.parentElement.id)
+
+// function saveEvent(event){
+  console.log(event.target.parentElement.id);
+
   // event.preventDefault();
 
-let eventText = description.value;
+  let eventText = description.val; //this is returning null
+  console.log(eventText);
 
-if (eventText === "") {
+  if (eventText === "") {
   return;
-}
-
-descriptionText.push(eventText);
-description.val = "";
 
 }
+  descriptionText.push(eventText);
+  description.val = "";
+
+  console.log(descriptionText);
+  
+  storeEvent();
+})
+
+function storeEvent() {
+  
+  localStorage.setItem("descriptionText", JSON.stringify(descriptionText));
+}
+
