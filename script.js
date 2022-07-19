@@ -7,7 +7,7 @@
 const container = $(".container");
 const timeSlots = ["9AM", "10AM", "11Am", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM"];
 const timeId = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
-const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+// const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const saveBtn = $(".saveBtn");
 const timeBlock = $('.time-block');
 const description = $(".description");
@@ -53,37 +53,27 @@ function timeState(){
     $(this).removeClass("present");
     $(this).addClass("future");
 }
-
   });
 }
 
 timeState();
 
-saveBtn.on("click", function(event){
-  (event.target.parentElement.id)
-
-// function saveEvent(event){
-  console.log(event.target.parentElement.id);
-
-  // event.preventDefault();
-
-  let eventText = description.val; //this is returning null
-  console.log(eventText);
-
-  if (eventText === "") {
-  return;
-
-}
-  descriptionText.push(eventText);
-  description.val = "";
-
-  console.log(descriptionText);
+saveBtn.click(eventHandle)
+ 
+function eventHandle(){
+var eventText = $(this).siblings("textarea").val();
+var id = $(this).siblings("textarea").attr("id");
+localStorage.setItem(id, eventText);
+};
   
-  storeEvent();
-})
 
-function storeEvent() {
-  
-  localStorage.setItem("descriptionText", JSON.stringify(descriptionText));
-}
+$("#hour-09").val(localStorage.getItem("hour-09"));
+$("#hour-10").val(localStorage.getItem("hour-10"));
+$("#hour-11").val(localStorage.getItem("hour-11"));
+$("#hour-12").val(localStorage.getItem("hour-12"));
+$("#hour-13").val(localStorage.getItem("hour-13"));
+$("#hour-14").val(localStorage.getItem("hour-14"));
+$("#hour-15").val(localStorage.getItem("hour-15"));
+$("#hour-16").val(localStorage.getItem("hour-16"));
+$("#hour-17").val(localStorage.getItem("hour-17"));
 
